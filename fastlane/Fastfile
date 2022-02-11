@@ -1,0 +1,37 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+update_fastlane
+
+default_platform(:android)
+
+platform :android do
+
+  desc "Submit a new Beta Build to App Center"
+  lane :staging do
+    gradle(task: "clean assembleStagingRelease")
+    appcenter_upload(
+      api_token: "e62eaa7d7ae37bfeb61f7c2e234b31cf10185e08",
+      owner_name: "gagan3458",
+      owner_type: "user", # Default is user - set to organization for appcenter organizations
+      destination_type: "group",
+      destinations: "Beta Testers",
+      app_name: "ComposeLayouts",
+      file: "app/build/outputs/apk/staging/release/app-staging-release.apk",
+      notify_testers: true # Set to false if you don't want to notify testers of your new release (default: `false`)
+    )
+  end
+
+end
+
+

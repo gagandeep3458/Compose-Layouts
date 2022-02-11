@@ -4,6 +4,14 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('C:\\Users\\Gagan\\AndroidStudioProjects\\TestingDemos\\NewEra\\Compose\\ComposeLayouts\\app\\keystore.jks')
+            storePassword 'password'
+            keyAlias 'composekey'
+            keyPassword 'password'
+        }
+    }
     compileSdk 31
 
     defaultConfig {
@@ -22,6 +30,7 @@ android {
     buildTypes {
         release {
             minifyEnabled true
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {

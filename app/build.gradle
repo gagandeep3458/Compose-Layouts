@@ -6,7 +6,7 @@ plugins {
 android {
     signingConfigs {
         release {
-            storeFile file('C:\\Users\\Gagan\\AndroidStudioProjects\\TestingDemos\\NewEra\\Compose\\ComposeLayouts\\app\\keystore.jks')
+            storeFile file('keystore.jks')
             storePassword 'password'
             keyAlias 'composekey'
             keyPassword 'password'

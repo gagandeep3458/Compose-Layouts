@@ -123,10 +123,10 @@ platform :android do
     puts deploy_platform
 
     if deploy_platform == $appcenter
-        puts "Appcenter App name: "
+        puts "App Center App name: "
         puts $appcenter_app_name
 
-        puts "Appcenter Distribution Groups: "
+        puts "App Center Distribution Groups: "
         puts $appcenter_distribution_groups
     end
   end

@@ -36,7 +36,7 @@ platform :android do
 
   def deploy_to_appcenter()
     appcenter_upload(
-      api_token: "e62eaa7d7ae37bfeb61f7c2e234b31cf10185e08",
+      api_token: ENV["APP_CENTER_TOKEN"],
       owner_name: "gagan3458",
       owner_type: "user", # Default is user - set to organization for appcenter organizations
       destination_type: "group",

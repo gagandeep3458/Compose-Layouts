@@ -92,6 +92,10 @@ platform :android do
     ENV["APPCENTER_APP_NAME"]
   end
 
+  def app_center_distribution_groups
+    ENV["APPCENTER_DISTRIBUTION_GROUPS"]
+  end
+
   def project_version_code
     android_get_version_code
   end
@@ -128,10 +132,10 @@ platform :android do
 
     if deploy_platform == $appcenter
         puts "App Center App name: "
-        puts $appcenter_app_name
+        puts $app_center_app_name
 
         puts "App Center Distribution Groups: "
-        puts $appcenter_distribution_groups
+        puts $app_center_distribution_groups
     end
   end
 end

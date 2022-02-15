@@ -12,7 +12,7 @@ platform :android do
     build_the_app()
     deploy_to_appcenter()
     slack(
-    slack_url: ENV["SLACK_URL"],
+    slack_url: ENV["URL"],
     message: "#[appcenter_app_name](#[env]) successfully deployed to AppCenter!",
     payload: {
     "Build Version" => project_full_version_string,

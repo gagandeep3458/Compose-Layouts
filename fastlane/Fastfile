@@ -18,20 +18,58 @@ default_platform(:android)
 platform :android do
 
   desc "Submit a new Beta Build to App Center"
-  lane :staging do
-    gradle(task: "clean assembleStagingRelease")
-    appcenter_upload(
-      api_token: "e62eaa7d7ae37bfeb61f7c2e234b31cf10185e08",
-      owner_name: "gagan3458",
-      owner_type: "user", # Default is user - set to organization for appcenter organizations
-      destination_type: "group",
-      destinations: "Beta Testers",
-      app_name: "ComposeLayouts",
-      file: "app/build/outputs/apk/staging/release/app-staging-release.apk",
-      notify_testers: true # Set to false if you don't want to notify testers of your new release (default: `false`)
-    )
+  lane :dsitribute do
+    build_the_app
+    print("Apk Path : #{lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]}")
+
+#     deploy_to_appcenter
   end
 
+    def deploy_to_appcenter()
+      appcenter_upload(
+        api_token: "e62eaa7d7ae37bfeb61f7c2e234b31cf10185e08",
+        owner_name: "gagan3458",
+        owner_type: "user", # Default is user - set to organization for appcenter organizations
+        destination_type: "group",
+        destinations: "Beta Testers",
+        app_name: "ComposeLayouts",
+        apk: apk_build_path,
+        notify_testers: true # Set to false if you don't want to notify testers of your new release (default: `false`)
+      )
+    end
+
+    def build_the_app
+      if is_ci
+        version_code = ENV["BITRISE_BUILD_NUMBER"]
+      else
+        version_code = UI.input("Version Code:")
+      end
+      gradle(
+        task: "clean"
+      )
+      increment_version_code(gradle_file_path: gradle_file_path, version_code: version_code)
+      gradle(
+        task:gradle_task, 
+        flavor:gradle_flavor,
+        build_type: gradle_build_type
+      )
+    end    
+
+    def gradle_file_path
+      ENV["GRADLE_FILE_PATH"]
+    end
+    def gradle_task
+      ENV["GRADLE_TASK"]
+    end
+    def gradle_flavor
+      ENV["GRADLE_FLAVOR"]
+    end
+    def gradle_build_type
+      ENV["GRADLE_BUILD_TYPE"]
+    end
+    def apk_build_path
+      ENV["GRADLE_APK_OUTPUT_PATH"]
+    end
 end
 
 

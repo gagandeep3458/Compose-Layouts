@@ -59,7 +59,7 @@ android {
     }
     flavorDimensions 'build'
     productFlavors {
-        devlopment {
+        development {
             manifestPlaceholders app_name: 'Develop - CL'
             applicationId "com.gagan.composelayouts"
             dimension 'build'

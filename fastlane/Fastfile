@@ -17,7 +17,9 @@ platform :android do
       group = "internal"
     end
     deploy_to_appcenter(group)
-    slack(message: "#[appcenter_app_name](#[env]) successfully deployed to AppCenter!",
+    slack(
+    slack_url: "https://hooks.slack.com/services/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"
+    message: "#[appcenter_app_name](#[env]) successfully deployed to AppCenter!",
     channel: "bitrise",
     payload: {
     "Build Version" => project_full_version_string,

@@ -10,7 +10,7 @@ platform :android do
     Dotenv.overload ".env.#{env}"
     print_all(options)
     build_the_app()
-    print("Apk Path : #{lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]}")
+    print("Apk Path: #{lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]}")
     if env == "staging"
       group = "client"
     else

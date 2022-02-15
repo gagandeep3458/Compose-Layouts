@@ -18,7 +18,7 @@ platform :android do
     end
     deploy_to_appcenter(group)
     slack(
-    slack_url: "https://hooks.slack.com/services/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"
+    slack_url: "https://hooks.slack.com/services/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",
     message: "#[appcenter_app_name](#[env]) successfully deployed to AppCenter!",
     channel: "bitrise",
     payload: {

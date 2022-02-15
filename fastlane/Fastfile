@@ -18,9 +18,8 @@ platform :android do
     end
     deploy_to_appcenter(group)
     slack(
-    slack_url: "https://hooks.slack.com/services/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",
+    slack_url: "https://hooks.slack.com/services/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",
     message: "#[appcenter_app_name](#[env]) successfully deployed to AppCenter!",
-    channel: "bitrise",
     payload: {
     "Build Version" => project_full_version_string,
     "Git Branch" => git_branch,
@@ -98,16 +97,8 @@ platform :android do
     ENV["APPCENTER_DISTRIBUTION_GROUPS"]
   end
 
-  def project_version_code
-    android_get_version_code
-  end
-
-  def project_version_name
-    android_get_version_name
-  end
-
   def project_full_version_string
-    return "#{project_version_name}##{project_version_code}"
+    return "#{android_get_version_name}##{android_get_version_code}"
   end
 
   def print_all(options)
@@ -134,10 +125,10 @@ platform :android do
 
     if deploy_platform == $appcenter
         puts "App Center App name: "
-        puts $app_center_app_name
+        puts app_center_app_name
 
         puts "App Center Distribution Groups: "
-        puts $app_center_distribution_groups
+        puts app_center_distribution_groups
     end
   end
 end

@@ -18,7 +18,7 @@ platform :android do
     end
     deploy_to_appcenter(group)
     slack(
-    slack_url: "https://hooks.slack.com/services/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",
+    slack_url: "https://hooks.slack.com/services/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",
     message: "#[appcenter_app_name](#[env]) successfully deployed to AppCenter!",
     payload: {
     "Build Version" => project_full_version_string,

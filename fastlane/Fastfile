@@ -17,6 +17,12 @@ platform :android do
       group = "internal"
     end
     deploy_to_appcenter(group)
+    slack(message: "#[appcenter_app_name](#[env]) successfully deployed to AppCenter!",
+    channel: "bitrise",
+    payload: {
+    "Build Version" => project_full_version_string,
+    "Git Branch" => env,
+    })
   end
 
   def build_the_app
@@ -80,6 +86,10 @@ platform :android do
 
   def apk_build_path
     ENV["GRADLE_APK_OUTPUT_PATH"]
+  end
+
+  def app_center_app_name
+    ENV["APPCENTER_APP_NAME"]
   end
 
   def project_version_code

@@ -21,7 +21,7 @@ platform :android do
     channel: "bitrise",
     payload: {
     "Build Version" => project_full_version_string,
-    "Git Branch" => env,
+    "Git Branch" => git_branch,
     })
   end
 
@@ -93,17 +93,11 @@ platform :android do
   end
 
   def project_version_code
-    get_version_code(
-      gradle_file_path:gradle_file_path,
-      ext_constant_name:"versionCode"
-    )
+    android_get_version_code
   end
 
   def project_version_name
-    get_version_code(
-      gradle_file_path:gradle_file_path,
-      ext_constant_name:"versionName"
-    )
+    android_get_version_name
   end
 
   def project_full_version_string
